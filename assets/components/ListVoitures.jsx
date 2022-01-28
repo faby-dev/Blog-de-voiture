@@ -1,32 +1,51 @@
-import React, {useState, useEffect} from "react"
-import ReactDOM from "react-dom"
+import React, {useEffect, useState} from "react";
+import ReactDOM from "react-dom";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Voiture from "./Voiture";
+
+const fetchApi = async(url, options)=>{
+    try {
+        let response = await fetch(url, options);
+        if(response.ok){
+            return await response.json()
+        }
+    }catch (e) {
+        console.log("Misy olona azafady" + e.message);
+    }
+}
+
+const CallApi = (url, methods, data) => {
+
+    let myHeaders = new Headers({"accept": "application/json"});
+    let options = {
+        method: methods,
+        headers: myHeaders,
+        body: data?data:null
+    }
+    return fetchApi(url, options);
+}
 
 function ListVoires() {
     const [Cars, setCars] = useState([])
     const urlGet = window.location + "api/voitures"
-    /**
-     * Pérmet d'avoir la donnée de l'API
-     *
-     * @param url
-     * @returns {Promise<void>}
-     */
-    const getData = async (url) =>{
-        let response = await fetch(url)
-        if(response.ok){
-            let Data = await response.json()
-            setCars(Data)
-        }
-    }
+    //const notify = () => toast.error("Ops!!! il a y un erreur")
+
     useEffect(()=>{
-        getData(urlGet);
-        console.log(Cars)
-    },[])
+       let response = CallApi(urlGet, "GET");
+        response.then((result)=>{
+            setCars(result);
+        });
+    },[Cars])
+
     return (
-        <div className="row">
-            <div className="col-12">
+        <React.StrictMode>
+            <div className="row mt-4">
                 <h1 className="text-center text-danger">Lists des Voitures</h1>
+                {Cars.map((Car)=> (<Voiture Voiture={Car} key={Car.id}/>))}
+                <ToastContainer />
             </div>
-        </div>
+        </React.StrictMode>
     )
 }
 const elem = document.getElementById("listVoitures");
