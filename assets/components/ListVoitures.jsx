@@ -11,7 +11,7 @@ const fetchApi = async(url, options)=>{
             return await response.json()
         }
     }catch (e) {
-        console.log("Misy olona azafady" + e.message);
+        console.log("Misy olona azafady:" + e.message);
     }
 }
 
