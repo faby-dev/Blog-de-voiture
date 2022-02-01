@@ -6,9 +6,11 @@ use App\Controller\VoituresController;
 use App\Repository\VoituresRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: VoituresRepository::class)]
 #[apiResource(
+    normalizationContext: ["groups" => ["voitures:lectures"]],
     itemOperations: [
         'get',
         'delete',
@@ -20,21 +22,27 @@ class Voitures
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["voitures:lectures"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["voitures:lectures"])]
     private $Marque;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["voitures:lectures"])]
     private $Models;
 
     #[ORM\Column(type: 'text')]
+    #[Groups(["voitures:lectures"])]
     private $Description;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["voitures:lectures"])]
     private $AnneSortie;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["voitures:lectures"])]
     private $slug;
 
     #[ORM\Column(type: 'datetime')]

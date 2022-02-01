@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Voitures{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <h4><strong>Marques:</strong>  {{ voitures.marque }}</h4>
+            <p><strong>Models :</strong>  {{ voitures.models }}</p>
+            <p><strong>Année de Sortie:</strong> {{ voitures.anneSortie }}</p>
+            <p><strong>Description :</strong> {{ voitures.description }}</p>
+        </div>
+    </div>
+{% endblock %}

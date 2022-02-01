@@ -7,7 +7,7 @@ use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentairesRepository::class)]
-#[ApiResource(itemOperations:["get"])]
+#[ApiResource(itemOperations:["get", "put", "delete"])]
 class Commentaires
 {
     #[ORM\Id]

@@ -7,9 +7,9 @@ function Voiture({Voiture}) {
                 <img src="#" className="card-img-top" alt="sary"/>
                 <div className="card-body">
                     <h5 className="card-title">{Voiture.Marque}</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk
-                        of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Afficher</a>
+                    <p>Models: {Voiture.models}</p>
+                    <p className="card-text">{Voiture.description}</p>
+                    <a href={Voiture.slug} className="btn btn-primary">Afficher</a>
                 </div>
             </div>
         </div>
